@@ -1,0 +1,35 @@
+﻿@model WebApplication9.Models.Sınıf
+@section Stylesheets {
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Sınıf Silme Sayfası";
+}
+
+<h2>Delete</h2>
+
+<h3>Silmek istediğinizden emin misiniz?</h3>
+<div>
+    <h4>Sınıf</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SınıfAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SınıfAd)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye dön", "Index")
+        </div>
+    }
+</div>

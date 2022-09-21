@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AdminLoginModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminAd" Type="varchar" MaxLength="50" />
+          <Property Name="Parola" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ders">
+          <Key>
+            <PropertyRef Name="DersID" />
+          </Key>
+          <Property Name="DersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DersAd" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="OgrenciID" />
+          </Key>
+          <Property Name="OgrenciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgrenciAd" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ogretmen3">
+          <Key>
+            <PropertyRef Name="OgretmenID" />
+          </Key>
+          <Property Name="OgretmenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgretmenAd" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Secim">
+          <Key>
+            <PropertyRef Name="MainID" />
+          </Key>
+          <Property Name="MainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgrenciID" Type="int" />
+          <Property Name="OgretmenID" Type="int" />
+          <Property Name="DersID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sınıf">
+          <Key>
+            <PropertyRef Name="SınıfID" />
+          </Key>
+          <Property Name="SınıfID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SınıfAd" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TeacherDers">
+          <Key>
+            <PropertyRef Name="TeacherDersID" />
+          </Key>
+          <Property Name="TeacherDersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OgretmenID" Type="int" Nullable="false" />
+          <Property Name="DersID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Main_Ogrenci">
+          <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+          <End Role="Secim" Type="Self.Secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenci">
+              <PropertyRef Name="OgrenciID" />
+            </Principal>
+            <Dependent Role="Secim">
+              <PropertyRef Name="OgrenciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Secim_Ders">
+          <End Role="Ders" Type="Self.Ders" Multiplicity="0..1" />
+          <End Role="Secim" Type="Self.Secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="DersID" />
+            </Principal>
+            <Dependent Role="Secim">
+              <PropertyRef Name="DersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Secim_Ogretmen3">
+          <End Role="Ogretmen3" Type="Self.Ogretmen3" Multiplicity="0..1" />
+          <End Role="Secim" Type="Self.Secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogretmen3">
+              <PropertyRef Name="OgretmenID" />
+            </Principal>
+            <Dependent Role="Secim">
+              <PropertyRef Name="OgretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherDers_Ders">
+          <End Role="Ders" Type="Self.Ders" Multiplicity="0..1" />
+          <End Role="TeacherDers" Type="Self.TeacherDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="DersID" />
+            </Principal>
+            <Dependent Role="TeacherDers">
+              <PropertyRef Name="DersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherDers_Ogretmen3">
+          <End Role="Ogretmen3" Type="Self.Ogretmen3" Multiplicity="1" />
+          <End Role="TeacherDers" Type="Self.TeacherDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogretmen3">
+              <PropertyRef Name="OgretmenID" />
+            </Principal>
+            <Dependent Role="TeacherDers">
+              <PropertyRef Name="OgretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdminLoginModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ders" EntityType="Self.Ders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogretmen3" EntityType="Self.Ogretmen3" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Secim" EntityType="Self.Secim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sınıf" EntityType="Self.Sınıf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherDers" EntityType="Self.TeacherDers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Main_Ogrenci" Association="Self.FK_Main_Ogrenci">
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+            <End Role="Secim" EntitySet="Secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Secim_Ders" Association="Self.FK_Secim_Ders">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="Secim" EntitySet="Secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Secim_Ogretmen3" Association="Self.FK_Secim_Ogretmen3">
+            <End Role="Ogretmen3" EntitySet="Ogretmen3" />
+            <End Role="Secim" EntitySet="Secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherDers_Ders" Association="Self.FK_TeacherDers_Ders">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="TeacherDers" EntitySet="TeacherDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherDers_Ogretmen3" Association="Self.FK_TeacherDers_Ogretmen3">
+            <End Role="Ogretmen3" EntitySet="Ogretmen3" />
+            <End Role="TeacherDers" EntitySet="TeacherDers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdminLoginModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AdminLoginEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="AdminLoginModel.Admin" />
+          <EntitySet Name="Ders" EntityType="AdminLoginModel.Ders" />
+          <EntitySet Name="Ogrenci" EntityType="AdminLoginModel.Ogrenci" />
+          <EntitySet Name="Ogretmen3" EntityType="AdminLoginModel.Ogretmen3" />
+          <EntitySet Name="Secim" EntityType="AdminLoginModel.Secim" />
+          <EntitySet Name="Sınıf" EntityType="AdminLoginModel.Sınıf" />
+          <EntitySet Name="TeacherDers" EntityType="AdminLoginModel.TeacherDers" />
+          <AssociationSet Name="FK_Secim_Ders" Association="AdminLoginModel.FK_Secim_Ders">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="Secim" EntitySet="Secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherDers_Ders" Association="AdminLoginModel.FK_TeacherDers_Ders">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="TeacherDers" EntitySet="TeacherDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Main_Ogrenci" Association="AdminLoginModel.FK_Main_Ogrenci">
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+            <End Role="Secim" EntitySet="Secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Secim_Ogretmen3" Association="AdminLoginModel.FK_Secim_Ogretmen3">
+            <End Role="Ogretmen3" EntitySet="Ogretmen3" />
+            <End Role="Secim" EntitySet="Secim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherDers_Ogretmen3" Association="AdminLoginModel.FK_TeacherDers_Ogretmen3">
+            <End Role="Ogretmen3" EntitySet="Ogretmen3" />
+            <End Role="TeacherDers" EntitySet="TeacherDers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Parola" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Ders">
+          <Key>
+            <PropertyRef Name="DersID" />
+          </Key>
+          <Property Name="DersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DersAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Secim" Relationship="AdminLoginModel.FK_Secim_Ders" FromRole="Ders" ToRole="Secim" />
+          <NavigationProperty Name="TeacherDers" Relationship="AdminLoginModel.FK_TeacherDers_Ders" FromRole="Ders" ToRole="TeacherDers" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="OgrenciID" />
+          </Key>
+          <Property Name="OgrenciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgrenciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Secim" Relationship="AdminLoginModel.FK_Main_Ogrenci" FromRole="Ogrenci" ToRole="Secim" />
+        </EntityType>
+        <EntityType Name="Ogretmen3">
+          <Key>
+            <PropertyRef Name="OgretmenID" />
+          </Key>
+          <Property Name="OgretmenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgretmenAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Secim" Relationship="AdminLoginModel.FK_Secim_Ogretmen3" FromRole="Ogretmen3" ToRole="Secim" />
+          <NavigationProperty Name="TeacherDers" Relationship="AdminLoginModel.FK_TeacherDers_Ogretmen3" FromRole="Ogretmen3" ToRole="TeacherDers" />
+        </EntityType>
+        <EntityType Name="Secim">
+          <Key>
+            <PropertyRef Name="MainID" />
+          </Key>
+          <Property Name="MainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgrenciID" Type="Int32" />
+          <Property Name="OgretmenID" Type="Int32" />
+          <Property Name="DersID" Type="Int32" />
+          <NavigationProperty Name="Ders" Relationship="AdminLoginModel.FK_Secim_Ders" FromRole="Secim" ToRole="Ders" />
+          <NavigationProperty Name="Ogrenci" Relationship="AdminLoginModel.FK_Main_Ogrenci" FromRole="Secim" ToRole="Ogrenci" />
+          <NavigationProperty Name="Ogretmen3" Relationship="AdminLoginModel.FK_Secim_Ogretmen3" FromRole="Secim" ToRole="Ogretmen3" />
+        </EntityType>
+        <EntityType Name="Sınıf">
+          <Key>
+            <PropertyRef Name="SınıfID" />
+          </Key>
+          <Property Name="SınıfID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SınıfAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TeacherDers">
+          <Key>
+            <PropertyRef Name="TeacherDersID" />
+          </Key>
+          <Property Name="TeacherDersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OgretmenID" Type="Int32" Nullable="false" />
+          <Property Name="DersID" Type="Int32" />
+          <NavigationProperty Name="Ders" Relationship="AdminLoginModel.FK_TeacherDers_Ders" FromRole="TeacherDers" ToRole="Ders" />
+          <NavigationProperty Name="Ogretmen3" Relationship="AdminLoginModel.FK_TeacherDers_Ogretmen3" FromRole="TeacherDers" ToRole="Ogretmen3" />
+        </EntityType>
+        <Association Name="FK_Secim_Ders">
+          <End Type="AdminLoginModel.Ders" Role="Ders" Multiplicity="0..1" />
+          <End Type="AdminLoginModel.Secim" Role="Secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="DersID" />
+            </Principal>
+            <Dependent Role="Secim">
+              <PropertyRef Name="DersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherDers_Ders">
+          <End Type="AdminLoginModel.Ders" Role="Ders" Multiplicity="0..1" />
+          <End Type="AdminLoginModel.TeacherDers" Role="TeacherDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="DersID" />
+            </Principal>
+            <Dependent Role="TeacherDers">
+              <PropertyRef Name="DersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Main_Ogrenci">
+          <End Type="AdminLoginModel.Ogrenci" Role="Ogrenci" Multiplicity="0..1" />
+          <End Type="AdminLoginModel.Secim" Role="Secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenci">
+              <PropertyRef Name="OgrenciID" />
+            </Principal>
+            <Dependent Role="Secim">
+              <PropertyRef Name="OgrenciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Secim_Ogretmen3">
+          <End Type="AdminLoginModel.Ogretmen3" Role="Ogretmen3" Multiplicity="0..1" />
+          <End Type="AdminLoginModel.Secim" Role="Secim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogretmen3">
+              <PropertyRef Name="OgretmenID" />
+            </Principal>
+            <Dependent Role="Secim">
+              <PropertyRef Name="OgretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherDers_Ogretmen3">
+          <End Type="AdminLoginModel.Ogretmen3" Role="Ogretmen3" Multiplicity="1" />
+          <End Type="AdminLoginModel.TeacherDers" Role="TeacherDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogretmen3">
+              <PropertyRef Name="OgretmenID" />
+            </Principal>
+            <Dependent Role="TeacherDers">
+              <PropertyRef Name="OgretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdminLoginModelStoreContainer" CdmEntityContainer="AdminLoginEntities2">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="AdminLoginModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="AdminAd" ColumnName="AdminAd" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ders">
+            <EntityTypeMapping TypeName="AdminLoginModel.Ders">
+              <MappingFragment StoreEntitySet="Ders">
+                <ScalarProperty Name="DersAd" ColumnName="DersAd" />
+                <ScalarProperty Name="DersID" ColumnName="DersID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogrenci">
+            <EntityTypeMapping TypeName="AdminLoginModel.Ogrenci">
+              <MappingFragment StoreEntitySet="Ogrenci">
+                <ScalarProperty Name="OgrenciAd" ColumnName="OgrenciAd" />
+                <ScalarProperty Name="OgrenciID" ColumnName="OgrenciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogretmen3">
+            <EntityTypeMapping TypeName="AdminLoginModel.Ogretmen3">
+              <MappingFragment StoreEntitySet="Ogretmen3">
+                <ScalarProperty Name="OgretmenAd" ColumnName="OgretmenAd" />
+                <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Secim">
+            <EntityTypeMapping TypeName="AdminLoginModel.Secim">
+              <MappingFragment StoreEntitySet="Secim">
+                <ScalarProperty Name="DersID" ColumnName="DersID" />
+                <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+                <ScalarProperty Name="OgrenciID" ColumnName="OgrenciID" />
+                <ScalarProperty Name="MainID" ColumnName="MainID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sınıf">
+            <EntityTypeMapping TypeName="AdminLoginModel.Sınıf">
+              <MappingFragment StoreEntitySet="Sınıf">
+                <ScalarProperty Name="SınıfAd" ColumnName="SınıfAd" />
+                <ScalarProperty Name="SınıfID" ColumnName="SınıfID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherDers">
+            <EntityTypeMapping TypeName="AdminLoginModel.TeacherDers">
+              <MappingFragment StoreEntitySet="TeacherDers">
+                <ScalarProperty Name="DersID" ColumnName="DersID" />
+                <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+                <ScalarProperty Name="TeacherDersID" ColumnName="TeacherDersID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

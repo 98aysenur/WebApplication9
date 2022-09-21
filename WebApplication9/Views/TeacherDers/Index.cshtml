@@ -1,0 +1,18 @@
+﻿@model WebApplication9.Models.Ogretmen3
+@{
+    ViewBag.Title = "Index";
+}
+@section Stylesheets {
+    <link href="~/Content/StyleSheet4.css" rel="stylesheet" />
+}
+<h2>Index</h2>
+@using (Html.BeginForm())
+{ 
+    <div class="col-md-10">
+        
+        @Html.DropDownList("OgretmenAd", new SelectList(ViewBag.data !=null ? ViewBag.data : "", "OgretmenID", "OgretmenAd"))
+        @Html.DropDownList("DersAd", new SelectList(ViewBag.data2, "DersID", "DersAd"))
+
+       <input type="submit" value="Ata" />
+    </div>
+}

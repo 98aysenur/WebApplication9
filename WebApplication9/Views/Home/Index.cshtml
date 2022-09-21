@@ -1,0 +1,55 @@
+﻿
+@{
+    
+    if(Session["AdminID"]== null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+@section Stylesheets {
+    <link href="~/Content/site.css" rel="stylesheet" />
+}
+<!DOCTYPE html>
+<html>
+<body>
+    <img src="~/images/kocaeli___niversitesi-logo-440B62032E-seeklogo.com.png" width="125" />
+    <h1>
+        DERS KAYIT SİSTEMİ
+    </h1>
+    <div class="context">
+        <h2>
+            <br />
+            <button class="button-17 button1" onclick="window.location= '@Url.Action( "Index", "Teacher")'">Öğretmen Listesi</button>
+            <br />
+            <br />
+            <button class="button-17 button2" onclick="window.location= '@Url.Action( "Index", "Student")'">Öğrenci Listesi</button>
+            <br />
+            <br />
+            <button class="button-17 button3" onclick="window.location= '@Url.Action( "Index", "Ders")'">Ders Listesi</button>
+            <br />
+            <br />
+            <button class="button-17 button4" onclick="window.location= '@Url.Action( "Index", "Sınıf")'">Sınıf Listesi</button>
+            <br />
+            <br />
+            <button class="button-17 button5" onclick="window.location= '@Url.Action( "Index", "TeacherDers")'">Öğretmen Ata</button>
+            <br />
+            <br />
+            <button class="button-17 button6" onclick="window.location= '@Url.Action( "Index", "Secim")'">Ders Seçimi</button>
+        </h2>
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

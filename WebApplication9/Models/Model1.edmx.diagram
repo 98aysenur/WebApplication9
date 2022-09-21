@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da61624bd325469b8966d26cd94cadee" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="AdminLoginModel.Admin" Width="1.5" PointX="15.875" PointY="1.875" />
+        <EntityTypeShape EntityType="AdminLoginModel.Ders" Width="1.5" PointX="8.125" PointY="0.5" />
+        <EntityTypeShape EntityType="AdminLoginModel.Ogrenci" Width="1.5" PointX="2.375" PointY="7.125" />
+        <EntityTypeShape EntityType="AdminLoginModel.Ogretmen3" Width="1.5" PointX="3.75" PointY="3.875" />
+        <EntityTypeShape EntityType="AdminLoginModel.Secim" Width="1.5" PointX="8.125" PointY="6.75" />
+        <EntityTypeShape EntityType="AdminLoginModel.Sınıf" Width="1.5" PointX="16.375" PointY="4.625" />
+        <EntityTypeShape EntityType="AdminLoginModel.TeacherDers" Width="1.5" PointX="12" PointY="2.25" />
+        <AssociationConnector Association="AdminLoginModel.FK_Secim_Ders" />
+        <AssociationConnector Association="AdminLoginModel.FK_TeacherDers_Ders" />
+        <AssociationConnector Association="AdminLoginModel.FK_Main_Ogrenci" />
+        <AssociationConnector Association="AdminLoginModel.FK_Secim_Ogretmen3" />
+        <AssociationConnector Association="AdminLoginModel.FK_TeacherDers_Ogretmen3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

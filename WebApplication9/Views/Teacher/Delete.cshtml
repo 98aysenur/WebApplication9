@@ -1,0 +1,35 @@
+﻿@model WebApplication9.Models.Ogretmen3
+@section Stylesheets {
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Öğretmen sil";
+}
+
+<h2>Delete</h2>
+
+<h3>Silmek istediğinizden emin misiniz?</h3>
+<div>
+    <h4>Ogretmen3</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretmenAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretmenAd)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye geri dön", "Index")
+        </div>
+    }
+</div>

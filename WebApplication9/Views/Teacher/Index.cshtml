@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication9.Models.Ogretmen3>
+@section Stylesheets {
+    <link href="~/Content/site.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Index";
+}
+<body>
+    <div class="context">
+        <p>
+
+            @Html.ActionLink("Yeni oluştur", "Create")
+        </p>
+     
+        @Html.DisplayNameFor(model => model.OgretmenAd)
+        <br />
+        @foreach (var item in Model)
+        { 
+            @Html.DisplayFor(modelItem => item.OgretmenAd)
+            <br />
+            @Html.ActionLink("Sil", "Delete", new { id = item.OgretmenID })
+            <br />
+        }
+        @*<div class="area">
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>*@
+    </div>
+</body>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebApplication9.Models.Ogrenci>
+@section Stylesheets {
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    @Html.ActionLink("Yeni oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OgrenciAd)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OgrenciAd)
+            </td>
+            <td>
+              
+                @Html.ActionLink("Sil", "Delete", new { id=item.OgrenciID  })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,35 @@
+﻿@model WebApplication9.Models.Ogrenci
+@section Stylesheets {
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Öğrenci Silme Sayfası";
+}
+
+<h2>Delete</h2>
+
+<h3>Silmek istediğinizden emin misiniz?</h3>
+<div>
+    <h4>Ogrenci</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OgrenciAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgrenciAd)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye geri dön", "Index")
+        </div>
+    }
+</div>

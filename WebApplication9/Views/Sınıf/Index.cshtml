@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication9.Models.Sınıf>
+@section Stylesheets {
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+    @Html.ActionLink("Yeni oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SınıfAd)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SınıfAd)
+            </td>
+            <td>
+
+                @Html.ActionLink("Sil", "Delete", new { id = item.SınıfID })
+            </td>
+        </tr>
+    }
+
+</table>

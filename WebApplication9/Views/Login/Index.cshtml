@@ -1,0 +1,51 @@
+﻿@model WebApplication9.Models.Admin
+@{
+    
+}
+@section Stylesheets {
+    <link href="~/Content/site.css" rel="stylesheet" />
+}
+<!DOCTYPE html>
+
+<html>
+<body>
+    <div class="login">
+        <meta name="viewport" content="width=device-width" />
+        <div id="login-div">
+            @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+            {
+                <h1>ADMİN GİRİŞİ</h1>
+                <div id="adminad">
+                    <p> @Html.LabelFor(model => model.AdminAd) </p>
+                    <p> @Html.EditorFor(model => model.AdminAd) </p>
+                    <p> @Html.ValidationMessageFor(model => model.AdminAd) </p>
+
+                    <p> @Html.LabelFor(model => model.Parola) </p>
+                    <p> @Html.EditorFor(model => model.Parola) </p>
+                    <p> @Html.ValidationMessageFor(model => model.Parola) </p>
+                </div>
+                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage) </label>
+                <p class="submit">
+                    <input type="submit" name="name" value="Giriş" />
+                    <input type="reset" name="name" value="Temizle" />
+                </p>  }
+        </div>
+    </div>
+    <div class="login-help">
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

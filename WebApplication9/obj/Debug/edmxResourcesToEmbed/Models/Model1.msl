@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AdminLoginModelStoreContainer" CdmEntityContainer="AdminLoginEntities2">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="AdminLoginModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Parola" ColumnName="Parola" />
+          <ScalarProperty Name="AdminAd" ColumnName="AdminAd" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ders">
+      <EntityTypeMapping TypeName="AdminLoginModel.Ders">
+        <MappingFragment StoreEntitySet="Ders">
+          <ScalarProperty Name="DersAd" ColumnName="DersAd" />
+          <ScalarProperty Name="DersID" ColumnName="DersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogrenci">
+      <EntityTypeMapping TypeName="AdminLoginModel.Ogrenci">
+        <MappingFragment StoreEntitySet="Ogrenci">
+          <ScalarProperty Name="OgrenciAd" ColumnName="OgrenciAd" />
+          <ScalarProperty Name="OgrenciID" ColumnName="OgrenciID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogretmen3">
+      <EntityTypeMapping TypeName="AdminLoginModel.Ogretmen3">
+        <MappingFragment StoreEntitySet="Ogretmen3">
+          <ScalarProperty Name="OgretmenAd" ColumnName="OgretmenAd" />
+          <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Secim">
+      <EntityTypeMapping TypeName="AdminLoginModel.Secim">
+        <MappingFragment StoreEntitySet="Secim">
+          <ScalarProperty Name="DersID" ColumnName="DersID" />
+          <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+          <ScalarProperty Name="OgrenciID" ColumnName="OgrenciID" />
+          <ScalarProperty Name="MainID" ColumnName="MainID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sınıf">
+      <EntityTypeMapping TypeName="AdminLoginModel.Sınıf">
+        <MappingFragment StoreEntitySet="Sınıf">
+          <ScalarProperty Name="SınıfAd" ColumnName="SınıfAd" />
+          <ScalarProperty Name="SınıfID" ColumnName="SınıfID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeacherDers">
+      <EntityTypeMapping TypeName="AdminLoginModel.TeacherDers">
+        <MappingFragment StoreEntitySet="TeacherDers">
+          <ScalarProperty Name="DersID" ColumnName="DersID" />
+          <ScalarProperty Name="OgretmenID" ColumnName="OgretmenID" />
+          <ScalarProperty Name="TeacherDersID" ColumnName="TeacherDersID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

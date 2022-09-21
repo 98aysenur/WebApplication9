@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebApplication9.Models.Ders>
+@using WebApplication9.ModelView
+@section Stylesheets {
+    <link href="~/Content/site.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "DERS SEÇİM SAYFASI";
+}
+
+@*<script src="~/Scripts/jquery-3.4.1.min.js">
+    </script>*@
+
+
+<body>
+
+    <div class="context">
+
+
+        @Html.DisplayNameFor(model => model.DersAd)
+
+        @{ int i = 0; }
+        @using (Html.BeginForm("Index", "Secim", FormMethod.Post, new { name = "frm", id = "frm" }))
+        {
+        <ul>
+            @foreach (var person in ViewBag.Dersler)
+            {
+               
+                int a = person.DersID;
+                i++;
+
+                <li>@person.DersAd</li>
+                @Html.DropDownList("OgretmenAd" + i, new SelectList(((List<TeacherDersListClass>)(ViewBag.Ogretmen)).Where(x => x.DersId == a), "OgretmenID", "OgretmenAdi"))
+                <br />
+                @Html.DropDownList("OgrenciAd" + i, new SelectList(ViewBag.Ogrenci, "OgrenciID", "OgrenciAd"))
+
+                <br />
+
+                <input type="button" value="seç" id=@i onclick="a_method(@i)" />
+            }
+        </ul>
+        }
+
+
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script>
+   function a_method(i) {
+        var t = "";
+       var secogretmen2listid = document.getElementById('OgretmenAd' + i).value;
+       //var secogretmen2 = document.getElementById('OgretmenAd' + i).innerText.split("\n");
+       //var secogretmenson = secogretmen2[secogretmen2listid];
+    var ders = i - 1;
+       var secogrenci2listid = document.getElementById('OgrenciAd' + i).value;
+       //var secogrenci2 = document.getElementById('OgrenciAd' + i).innerText.split("\n");
+       //var secogrencison = secogrenci2[secogrenci2listid];
+      /* document.frm.submit();*/
+        $.ajax({
+            url: '@Url.Action("a_method", "Secim")',
+            type: 'POST',
+            dataType: "json",
+            data: {
+                data1: secogretmen2listid, data2: secogrenci2listid,data3: ders
+
+            },
+            success: function (result) {
+                alert("Ders kaydınız başarılı!!");
+          /* document.frm.submit();*/
+                console.log(result);
+            },
+            error: function(errorThrown) {
+                alert("Failed to post");
+                console.log(errorThrown);
+            }
+
+        });
+    };
+
+</script>
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
